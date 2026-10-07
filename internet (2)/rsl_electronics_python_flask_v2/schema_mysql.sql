@@ -1,0 +1,25 @@
+CREATE DATABASE IF NOT EXISTS rsl_electronics CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+USE rsl_electronics;
+
+CREATE TABLE IF NOT EXISTS usuarios (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  nombre VARCHAR(150) NOT NULL,
+  edad INT NOT NULL,
+  fecha_nacimiento DATE NOT NULL,
+  correo VARCHAR(150) NOT NULL UNIQUE,
+  usuario VARCHAR(80) NOT NULL UNIQUE,
+  telefono VARCHAR(20) NOT NULL,
+  direccion VARCHAR(200) NOT NULL,
+  password_hash VARCHAR(255) NOT NULL,
+  creado_en DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS productos (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  nombre VARCHAR(150) NOT NULL,
+  precio DECIMAL(12,2) NOT NULL,
+  imagen VARCHAR(255),
+  descripcion VARCHAR(255),
+  categoria VARCHAR(80) DEFAULT 'Electrodomésticos',
+  creado_en DATETIME DEFAULT CURRENT_TIMESTAMP
+);

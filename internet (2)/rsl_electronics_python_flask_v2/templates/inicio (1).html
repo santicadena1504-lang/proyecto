@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RSL Electronics - Inicio</title>
+  <style>
+    body{
+      font-family: Arial, sans-serif; margin:0; min-height:100vh; color:#fff;
+      background: linear-gradient(135deg,#0d2a4d,#3a1a75,#6c48a7);
+      display:flex; justify-content:center; align-items:center; padding:30px; box-sizing:border-box;
+    }
+    .contenedor{
+      max-width:900px; width:100%; background:rgba(255,255,255,0.12); backdrop-filter:blur(8px);
+      border-radius:18px; padding:40px; text-align:center; box-shadow:0 8px 28px rgba(0,0,0,.25);
+    }
+    .contenedor img{ height:90px; margin-bottom:16px; }
+    h1{ font-size:2.4rem; margin-bottom:12px; }
+    p{ font-size:1.08rem; line-height:1.6; color:#f1f5f9; }
+    .acciones{ display:flex; gap:14px; justify-content:center; flex-wrap:wrap; margin-top:24px; }
+    .btn{
+      display:inline-block; padding:12px 18px; border-radius:10px; text-decoration:none; font-weight:bold;
+      background:#ffd700; color:#0d2a4d;
+    }
+    .btn-outline{
+      background:transparent; color:#fff; border:2px solid rgba(255,255,255,.5);
+    }
+    .mini{ margin-top:24px; font-size:.95rem; }
+    .flash{max-width:900px;margin:15px auto;padding:12px 16px;border-radius:10px;font-weight:bold;}
+    .flash.success{background:#d1fae5;color:#065f46;}
+    .flash.error{background:#fee2e2;color:#991b1b;}
+    .flash.info{background:#dbeafe;color:#1e3a8a;}
+  </style>
+</head>
+<body>
+{% with messages = get_flashed_messages(with_categories=true) %}{% if messages %}{% for category, message in messages %}<div class="flash {{ category }}">{{ message }}</div>{% endfor %}{% endif %}{% endwith %}
+  <div class="contenedor">
+    <img src="{{ url_for('static', filename='asets (2)/imagenes (2)/logo.png') }}" alt="Logo RSL">
+    <h1>RSL Electronics</h1>
+    <p>Explora nuestra tienda virtual de electrodomésticos, tecnología y hogar. Ahora el acceso al sistema quedó separado: el inicio ya no es el login, y el ingreso se hace desde una página independiente.</p>
+    <div class="acciones">
+      <a class="btn" href="{{ url_for('tienda') }}">Entrar a la tienda</a>
+      <a class="btn btn-outline" href="{{ url_for('registro') }}">Crear cuenta</a>
+    </div>
+    <p class="mini">¿Ya tienes cuenta? <a style="color:#ffd700; font-weight:bold;" href="{{ url_for('login') }}">Iniciar sesión</a></p>
+  </div>
+</body>
+</html>

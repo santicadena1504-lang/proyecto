@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RSL Electronics - Iniciar Sesión</title>
+  <style>
+    body {font-family: Arial, sans-serif; margin: 0; padding: 0; background: #231252; display: flex; justify-content: center; align-items: center; min-height: 100vh; flex-direction: column;}
+    .contenedor {background: white; padding: 30px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.2); width: 350px; text-align: center;}
+    .contenedor img {height: 60px; margin-bottom: 10px;}
+    h2 {color: #0d2a4d; margin-bottom: 20px;}
+    input {width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 6px; box-sizing:border-box;}
+    button {background: #0d2a4d; color: white; padding: 10px; width: 100%; border: none; border-radius: 6px; cursor: pointer; font-weight: bold;}
+    button:hover {background: #123765;}
+    p {margin-top: 15px; font-size: 14px;}
+    a {color: #0d2a4d; text-decoration: none; font-weight: bold;}
+    a:hover {text-decoration: underline;}
+    .flash{max-width:900px;margin:15px auto;padding:12px 16px;border-radius:10px;font-weight:bold;}
+    .flash.success{background:#d1fae5;color:#065f46;}
+    .flash.error{background:#fee2e2;color:#991b1b;}
+    .flash.info{background:#dbeafe;color:#1e3a8a;}
+  </style>
+</head>
+<body>
+{% with messages = get_flashed_messages(with_categories=true) %}{% if messages %}{% for category, message in messages %}<div class="flash {{ category }}">{{ message }}</div>{% endfor %}{% endif %}{% endwith %}
+  <div class="contenedor">
+    <img src="{{ url_for('static', filename='asets (2)/imagenes (2)/logo.png') }}" alt="Logo RSL">
+    <h2>Iniciar Sesión</h2>
+    <form method="post" action="{{ url_for('login') }}">
+      <input type="text" name="identidad" placeholder="Correo electrónico o usuario" required>
+      <input type="password" name="password" placeholder="Contraseña" required>
+      <button type="submit">Entrar</button>
+    </form>
+    <p>¿No tienes cuenta? <a href="{{ url_for('registro') }}">Crear cuenta</a></p>
+    <p><a href="{{ url_for('inicio') }}">Volver al inicio</a></p>
+  </div>
+</body>
+</html>
